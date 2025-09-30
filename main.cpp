@@ -12,6 +12,8 @@
 
 using namespace std;
 
+const string FILEPATH = "/Users/andrewtai/Desktop/COMSC_210/projects/210-lab-19/";   // Path to movie text files
+
 
 // Fn prototypes
 Movie readReviews(string title, string filename);
@@ -25,13 +27,13 @@ int main() {
 
     // Read reviews
     srand(time(0));
-    Movie movie1 = readReviews("movie1", "movie1.txt");
+    Movie movie1 = readReviews("movie1", FILEPATH + "movie1.txt");
     movies.push_back(movie1);
 
-    Movie movie2 = readReviews("movie2", "movie2.txt");
+    Movie movie2 = readReviews("movie2", FILEPATH + "movie2.txt");
     movies.push_back(movie2);
 
-    Movie movie3 = readReviews("movie3", "movie3.txt");
+    Movie movie3 = readReviews("movie3", FILEPATH + "movie3.txt");
     movies.push_back(movie3);
 
     // Print
