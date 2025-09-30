@@ -12,7 +12,7 @@ using namespace std;
 
 
 // Fn prototypes
-Movie readReviews(string filename);
+Movie readReviews(string title, string filename);
 
 // Main
 int main() {
@@ -20,6 +20,8 @@ int main() {
     // Initialize movie vector
     vector<Movie> movies;
 
+    // Read reviews
+    movies.push_back(readReviews("movie1", "movie1.txt"));
 
     return 0;
 }
@@ -35,20 +37,20 @@ Movie readReviews(string title, string filename) {
     }
 
     // Read reviews into linked list
-
     srand(time(0));
     ReviewNode* head = nullptr;
     string comment;
 
     while (getline(fin, comment)) {
-        double rating = (rand() % 51) / 10.0;
+        double rating = (rand() % 51) / 10.0;       // Random rating 0.0 - 5.0
         ReviewNode* newNode = new ReviewNode{rating, comment, nullptr};
-        if (!head) {
+        if (!head) {        // If first node, make head
             head = newNode;
-        } else {
+        } else {             // Else, insert at front
             newNode->next = head;
             head = newNode;
         }
     }
 
+    return Movie(title, head);
 }
