@@ -23,30 +23,11 @@ class Movie {
         // Copy constructor
         Movie(const Movie& other) {
             title = other.title;
-            if (!other.head) {
-                head = nullptr;
-            } else {
-                head = new ReviewNode{other.head->rating, other.head->comment, nullptr};
-                ReviewNode* currOther = other.head->next;
-                ReviewNode* currThis = head;
-                while (currOther) {
-                    currThis->next = new ReviewNode{currOther->rating, currOther->comment, nullptr};
-                    currThis = currThis->next;
-                    currOther = currOther->next;
-                }
-            }
+            head = copyList(other.head);
         }
 
         // Destructor
-        ~Movie() {
-            ReviewNode* curr = head;
-            while (curr) {
-                ReviewNode* tmp = curr;
-                curr = curr->next;
-                delete tmp;
-            }
-            head = nullptr;
-        }
+        ~Movie() { clearList(); }
 
         // Getters
         string getTitle() const { return title; }
@@ -59,6 +40,29 @@ class Movie {
     private:
         string title;       // Movie title
         ReviewNode* head;   // Ptr to linked list of reviews
+        
+        void clearList() {
+            ReviewNode* curr = head;
+            while (curr) {
+                ReviewNode* tmp = curr;
+                curr = curr->next;
+                delete tmp;
+            }
+            head = nullptr;
+        }
+
+        ReviewNode* copyList(const ReviewNode* otherHead) {
+            if (!otherHead) return nullptr;
+            ReviewNode* newHead = new ReviewNode{otherHead->rating, otherHead->comment, nullptr};
+            ReviewNode* currOther = otherHead->next;
+            ReviewNode* currThis = newHead;
+            while (currOther) {
+                currThis->next = new ReviewNode{currOther->rating, currOther->comment, nullptr};
+                currThis = currThis->next;
+                currOther = currOther->next;
+            }
+            return newHead;
+        }
 
 };
 
