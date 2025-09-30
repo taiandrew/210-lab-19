@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <cstdlib>
+#include <ctime>
 
 #include "movie.h"
 
@@ -22,7 +24,10 @@ int main() {
     vector<Movie> movies;
 
     // Read reviews
-    movies.push_back(readReviews("movie1", "/Users/andrewtai/Desktop/COMSC_210/projects/210-lab-19/movie1.txt"));
+    srand(time(0));
+    Movie movie1 = readReviews("movie1", "movie1.txt");
+    movies.push_back(movie1);
+
 
     // Print
     for (const Movie& movie : movies) {
@@ -45,8 +50,7 @@ Movie readReviews(string title, string filename) {
         return Movie("");
     }
 
-    // Read reviews into linked list
-    srand(time(0));
+    // Read reviews into linked list of ReviewNodes
     ReviewNode* head = nullptr;
     string comment;
 
