@@ -20,6 +20,22 @@ class Movie {
             this->title = title;
             this->head = head;
         }
+        // Copy constructor
+        Movie(const Movie& other) {
+            title = other.title;
+            if (!other.head) {
+                head = nullptr;
+            } else {
+                head = new ReviewNode{other.head->rating, other.head->comment, nullptr};
+                ReviewNode* currOther = other.head->next;
+                ReviewNode* currThis = head;
+                while (currOther) {
+                    currThis->next = new ReviewNode{currOther->rating, currOther->comment, nullptr};
+                    currThis = currThis->next;
+                    currOther = currOther->next;
+                }
+            }
+        }
 
         // Destructor
         ~Movie() {

@@ -28,6 +28,11 @@ int main() {
     Movie movie1 = readReviews("movie1", "movie1.txt");
     movies.push_back(movie1);
 
+    Movie movie2 = readReviews("movie2", "movie2.txt");
+    movies.push_back(movie2);
+
+    Movie movie3 = readReviews("movie3", "movie3.txt");
+    movies.push_back(movie3);
 
     // Print
     for (const Movie& movie : movies) {
@@ -80,4 +85,5 @@ void printReviews(const Movie& movie) {
         cout << "Rating: " << curr->rating << " | Comment: " << curr->comment << endl;
         curr = curr->next;
     }
+    cout << endl;
 }
