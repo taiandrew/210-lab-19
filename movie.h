@@ -21,24 +21,15 @@ class Movie {
 
         // Getters
         string getTitle() const { return title; }
-        string getReviews() const {
-            string reviews;
-            ReviewNode* current = head;
-            while (current != nullptr) {
-                reviews += "Rating: " + to_string(current->rating) + ", Comment: " + current->comment + "\n";
-                current = current->next;
-            }
-            return reviews;
-        }
+        ReviewNode* getReviews() const { return head; }
         
         // Setters
-        void setComment(string comment) { this->comment = comment; }
-        void setRating(double rating) { this->rating = rating; }
+        void setTitle(const string& title) { this->title = title; }
+        void setHead(ReviewNode* head) { this->head = head; }
 
     private:
         string title;       // Movie title
         ReviewNode* head;   // Ptr to linked list of reviews
-
 
 };
 
