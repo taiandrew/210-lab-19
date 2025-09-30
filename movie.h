@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// Each instance of a Movie has the title and a linked list of reviews
+
 struct ReviewNode{
     double rating;
     string comment;
@@ -17,6 +19,16 @@ class Movie {
         Movie(string title, ReviewNode* head = nullptr) {
             this->title = title;
             this->head = head;
+        }
+
+        // Destructor
+        ~Movie() {
+            ReviewNode* curr = head;
+            while (curr) {
+                ReviewNode* tmp = curr;
+                curr = curr->next;
+                delete tmp;
+            }
         }
 
         // Getters
