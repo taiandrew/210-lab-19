@@ -29,6 +29,7 @@ class Movie {
                 curr = curr->next;
                 delete tmp;
             }
+            head = nullptr;
         }
 
         // Getters
