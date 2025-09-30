@@ -13,6 +13,7 @@ using namespace std;
 
 // Fn prototypes
 Movie readReviews(string title, string filename);
+void printReviews(const Movie& movie);
 
 // Main
 int main() {
@@ -21,13 +22,21 @@ int main() {
     vector<Movie> movies;
 
     // Read reviews
-    movies.push_back(readReviews("movie1", "movie1.txt"));
+    movies.push_back(readReviews("movie1", "/Users/andrewtai/Desktop/COMSC_210/projects/210-lab-19/movie1.txt"));
+
+    // Print
+    for (const Movie& movie : movies) {
+        printReviews(movie);
+    }
 
     return 0;
 }
 
 // Programmer fns
 Movie readReviews(string title, string filename) {
+    // Reads text comments from file; generates random ratings; stores in a Movie instance
+    // args: movie title, filename
+    // returns: Movie instance
 
     // Open file
     ifstream fin(filename);
@@ -52,5 +61,19 @@ Movie readReviews(string title, string filename) {
         }
     }
 
+    fin.close();
+
     return Movie(title, head);
+}
+
+void printReviews(const Movie& movie) {
+    // Prints all reviews for a movie
+    // arg: Movie instance
+
+    cout << "Reviews for " << movie.getTitle() << ":" << endl;
+    ReviewNode* curr = movie.getReviews();
+    while (curr) {
+        cout << "Rating: " << curr->rating << " | Comment: " << curr->comment << endl;
+        curr = curr->next;
+    }
 }
