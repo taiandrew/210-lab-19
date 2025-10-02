@@ -41,6 +41,7 @@ class Movie {
         string title;       // Movie title
         ReviewNode* head;   // Ptr to linked list of reviews
         
+        // Deletes the linked list of reviews
         void clearList() {
             ReviewNode* curr = head;
             while (curr) {
@@ -51,8 +52,12 @@ class Movie {
             head = nullptr;
         }
 
+        // Copies te linked list of reviews; returns head of new linked list
         ReviewNode* copyList(const ReviewNode* otherHead) {
-            if (!otherHead) return nullptr;
+            if (!otherHead) {
+                return nullptr;
+            }
+
             ReviewNode* newHead = new ReviewNode{otherHead->rating, otherHead->comment, nullptr};
             ReviewNode* currOther = otherHead->next;
             ReviewNode* currThis = newHead;

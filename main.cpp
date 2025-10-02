@@ -14,7 +14,6 @@ using namespace std;
 
 const string FILEPATH = "/Users/andrewtai/Desktop/COMSC_210/projects/210-lab-19/";   // Path to movie text files
 
-
 // Fn prototypes
 Movie readReviews(string title, string filename);
 void printReviews(const Movie& movie);
