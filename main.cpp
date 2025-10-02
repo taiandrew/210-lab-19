@@ -61,7 +61,7 @@ Movie readReviews(string title, string filename) {
     string comment;
 
     while (getline(fin, comment)) {
-        double rating = (rand() % 51) / 10.0;       // Random rating 0.0 - 5.0
+        double rating = (rand() % 41) / 10.0 + 1.0;       // Random rating 1.0 - 5.0
         ReviewNode* newNode = new ReviewNode{rating, comment, nullptr};
         if (!head) {        // If first node, make head
             head = newNode;
